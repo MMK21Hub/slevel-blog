@@ -28,7 +28,11 @@ layout: default
       {%- endfor -%}
     </ul>
 
-    <p class="rss-subscribe">Subscribe to blog posts (RSS): <a href="{{ "/feed.xml" | absolute_url }}">{{"/feed.xml" | absolute_url}}</a></p>
+    <hr>
+    <ul>
+      <li>Take a look at <a href="{{ "/posts" | relative_url }}">all my blog posts</a></li>
+      <li class="rss-subscribe">Subscribe to the blog posts (RSS): <a href="{{ "/feed.xml" | absolute_url }}">{{"/feed.xml" | absolute_url}}</a></li>
+    </ul>
   {%- endif -%}
 
 </div>
