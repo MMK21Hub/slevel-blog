@@ -1,0 +1,24 @@
+---
+layout: page
+title: All blog posts
+header_title: Posts
+---
+
+<ul class="post-list">
+  {%- for post in site.posts -%}
+  <li>
+    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+    <span class="post-meta">{{ post.date | date: date_format }}</span>
+    <h3>
+      <a class="post-link" href="{{ post.url | relative_url }}">
+        {{ post.title | escape }}
+      </a>
+    </h3>
+    {%- if site.show_excerpts -%}
+      {{ post.excerpt }}
+    {%- endif -%}
+  </li>
+  {%- endfor -%}
+</ul>
+
+<p class="rss-subscribe">Do you like RSS? Well boy, do I have <a href="{{ "/feed.xml" | relative_url }}">an RSS feed</a> for you!</p>
