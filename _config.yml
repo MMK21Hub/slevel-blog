@@ -31,7 +31,9 @@ baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://blog.slevel.xyz" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Contact
-email: hi@slevel.xyz
+author:
+  name: MMK21
+  email: hi@slevel.xyz
 github_username: MMK21Hub
 
 # Build settings
@@ -41,6 +43,12 @@ plugins:
 
 # Other customization
 show_excerpts: true
+minima:
+  skin: auto
+  date_format: "%Y-%m-%d %H:%M"
+header_pages:
+  - posts.md
+  - infradocs/index.md
 
 # Exclude from processing.
 # The following items will not be processed, by default.
