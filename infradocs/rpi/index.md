@@ -7,4 +7,4 @@ My Raspberry Pi 400 acts as a central home server, hosting various internal and 
 
 ## Pages
 
-- [Deployment guide](./deployment-guide.md) (steps for deploying all the software onto a fresh Raspberry Pi)
+- [Deployment guide](./deployment-guide) (steps for deploying all the software onto a fresh Raspberry Pi)
