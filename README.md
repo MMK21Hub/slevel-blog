@@ -2,7 +2,7 @@
 
 This repository contains the source code for my personal blog at **[📖 blog.slevel.xyz](https://blog.slevel.xyz)**.
 
-It uses Jekyll with the [Minima](https://github.com/jekyll/minima) theme.
+It uses Jekyll with the [Minima](https://github.com/jekyll/minima) theme. It's deployed by [Netlify](https://www.netlify.com/) (so <https://mmk21-blog.netlify.app> is an alternative domain).
 
 ## Development instructions
 
