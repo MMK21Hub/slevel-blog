@@ -12,3 +12,11 @@ It uses Jekyll with the [Minima](https://github.com/jekyll/minima) theme. It's d
 sudo bundle install
 bundle exec jekyll serve
 ```
+
+## Deployment to Netlify instructions
+
+- `RUBY_VERSION` environment variable should be set to `3.3.7`. Justification:
+  - `bundler-2.6.0` requires Ruby `>= 3.1.0`
+  - Jekyll tries to load `csv` from the standard library, which stopped being supported in Ruby `3.4.0`
+  - `3.3.x` is the latest major version that matches these requirements
+  - `3.3.7` is the latest `3.3.x` version as of 2025-02-16
