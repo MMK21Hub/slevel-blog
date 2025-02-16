@@ -21,4 +21,6 @@ header_title: Posts
   {%- endfor -%}
 </ul>
 
-<p class="rss-subscribe">Do you like RSS? Well boy, do I have <a href="{{ "/feed.xml" | relative_url }}">an RSS feed</a> for you!</p>
+<hr>
+
+<p class="rss-subscribe">Do you like RSS? <a href="{{ "/feed.xml" | relative_url }}">Have some RSS!</a></p>
