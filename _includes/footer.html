@@ -22,6 +22,9 @@
           {%- endif %}
         </ul>
       {%- endif %}
+        {% if site.source_code_url -%}
+          Source code: <a href="{{ site.source_code_url }}">{{ site.source_code_url }}</a>
+        {%- endif %}
       </div>
       <div class="footer-col">
         <p>{{ site.description | escape }}</p>

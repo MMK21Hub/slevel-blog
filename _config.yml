@@ -35,6 +35,7 @@ author:
   name: MMK21
   email: hi@slevel.xyz
 github_username: MMK21Hub
+source_code_url: https://github.com/MMK21Hub/slevel-blog
 
 # Build settings
 theme: minima
@@ -50,7 +51,6 @@ minima:
 header_pages:
   - posts.md
   - infradocs/index.md
-
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
