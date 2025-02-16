@@ -1,0 +1,60 @@
+9:58:29 PM: Netlify Build                                                 
+9:58:29 PM: ────────────────────────────────────────────────────────────────
+9:58:29 PM: ​
+9:58:29 PM: ❯ Version
+9:58:29 PM:   @netlify/build 29.58.9
+9:58:29 PM: ​
+9:58:29 PM: ❯ Flags
+9:58:29 PM:   accountId: 604773eaf00182fdea4bdbea
+9:58:29 PM:   baseRelDir: true
+9:58:29 PM:   buildId: 67b25e711b37a713e67cb58a
+9:58:29 PM:   deployId: 67b25e711b37a713e67cb58c
+9:58:29 PM: ​
+9:58:29 PM: ❯ Current directory
+9:58:29 PM:   /opt/build/repo
+9:58:29 PM: ​
+9:58:29 PM: ❯ Config file
+9:58:29 PM:   No config file was defined: using default values.
+9:58:29 PM: ​
+9:58:29 PM: ❯ Context
+9:58:29 PM:   production
+9:58:29 PM: ​
+9:58:29 PM: Build command from Netlify app                                
+9:58:29 PM: ────────────────────────────────────────────────────────────────
+9:58:29 PM: ​
+9:58:29 PM: $ jekyll build
+9:58:29 PM: /opt/build/cache/bundle/ruby/3.4.0/gems/jekyll-4.3.4/lib/jekyll.rb:26: warning: logger was loaded from the standard library, but will no longer be part of the default gems starting from Ruby 3.5.0.
+9:58:29 PM: You can add logger to your Gemfile or gemspec to silence this warning.
+9:58:29 PM: /opt/build/cache/bundle/ruby/3.4.0/gems/jekyll-4.3.4/lib/jekyll.rb:28: warning: csv was loaded from the standard library, but is not part of the default gems starting from Ruby 3.4.0.
+9:58:29 PM: You can add csv to your Gemfile or gemspec to silence this warning.
+9:58:29 PM: /opt/buildhome/.rvm/rubies/ruby-3.4.2/lib/ruby/3.4.0/bundled_gems.rb:82:in 'Kernel.require': cannot load such file -- csv (LoadError)
+9:58:29 PM: 	from /opt/buildhome/.rvm/rubies/ruby-3.4.2/lib/ruby/3.4.0/bundled_gems.rb:82:in 'block (2 levels) in Kernel#replace_require'
+9:58:29 PM: 	from /opt/build/cache/bundle/ruby/3.4.0/gems/jekyll-4.3.4/lib/jekyll.rb:28:in '<top (required)>'
+9:58:29 PM: 	from /opt/buildhome/.rvm/rubies/ruby-3.4.2/lib/ruby/3.4.0/bundled_gems.rb:82:in 'Kernel.require'
+9:58:29 PM: 	from /opt/buildhome/.rvm/rubies/ruby-3.4.2/lib/ruby/3.4.0/bundled_gems.rb:82:in 'block (2 levels) in Kernel#replace_require'
+9:58:29 PM: 	from /opt/build/cache/bundle/ruby/3.4.0/gems/jekyll-4.3.4/exe/jekyll:8:in '<top (required)>'
+9:58:29 PM: 	from /opt/build/cache/binstubs/jekyll:27:in 'Kernel#load'
+9:58:29 PM: 	from /opt/build/cache/binstubs/jekyll:27:in '<main>'
+9:58:29 PM: ​
+9:58:29 PM: "build.command" failed                                        
+9:58:29 PM: ────────────────────────────────────────────────────────────────
+9:58:29 PM: ​
+9:58:29 PM:   Error message
+9:58:29 PM:   Command failed with exit code 1: jekyll build (https://ntl.fyi/exit-code-1)
+9:58:29 PM: ​
+9:58:29 PM:   Error location
+9:58:29 PM:   In Build command from Netlify app:
+9:58:29 PM:   jekyll build
+9:58:29 PM: ​
+9:58:29 PM:   Resolved config
+9:58:29 PM:   build:
+9:58:29 PM:     command: jekyll build
+9:58:29 PM:     commandOrigin: ui
+9:58:29 PM:     environment:
+9:58:29 PM:       - RUBY_VERSION
+9:58:29 PM:     publish: /opt/build/repo/_site
+9:58:29 PM:     publishOrigin: ui
+9:58:30 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+9:58:30 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+9:58:30 PM: Failing build: Failed to build site
+9:58:30 PM: Finished processing build request in 3m51.722s
