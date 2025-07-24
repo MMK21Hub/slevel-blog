@@ -1,5 +1,15 @@
 {
-  "cSpell.words": ["Bitwarden", "Infradocs", "Slevel"],
+  "cSpell.words": [
+    "ACMO",
+    "Bitwarden",
+    "immish",
+    "Infradocs",
+    "iperf3",
+    "lazygit",
+    "librechat",
+    "pomf",
+    "Slevel"
+  ],
   "[markdown]": {
     "editor.defaultFormatter": "vscode.markdown-language-features"
   }

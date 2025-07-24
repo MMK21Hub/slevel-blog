@@ -3,6 +3,8 @@ title: RPi deployment guide
 layout: page
 ---
 
+<!-- markdownlint-disable blanks-around-lists blanks-around-fences ol-prefix -->
+
 A guide to deploy my home server stack on a Raspberry Pi.
 
 ## Rough guide
@@ -28,7 +30,7 @@ CONF_MAXSWAP=8192
 6. Apply the swapfile changes: `sudo dphys-swapfile {swapoff,setup,swapon}`
 7. Install and set up PiVPN - <https://www.pivpn.io/>
 7. Install `iperf3`
-8. Install Docker: https://docs.docker.com/engine/install/debian/#install-using-the-repository
+8. Install Docker: <https://docs.docker.com/engine/install/debian/#install-using-the-repository>
 9. Install Git, configure it, and set up authentication via SSH
 ```ini
 # git config -l
