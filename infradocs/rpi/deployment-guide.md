@@ -7,12 +7,15 @@ layout: page
 
 A guide to deploy my home server stack on a Raspberry Pi.
 
-## Rough guide
+## Disclaimer: This is a rough guide
 
-Done from memory without testing. Proper guide coming soon, maybe
+This guide was made from memory and hadn't (yet) been fully tested.
+
+Also, if you're not Mish, you might struggle to follow some of the steps (especially regarding security configuration) because this is intended as a guide for future me. The `rpi-docker-compose` repository is unfortunately not public. However, if you want to take inspiration from my setup, please do, and message me (Slack, email, Discord) because I'd be more than happy to give you some tips.
 
 ## Part 1: Installation and configuration
 
+<!-- TODO backups to mish-arch?? -->
 1. Install the latest Raspberry Pi OS onto an SD card, with SSH access (via pubkey ofc) available for a user called `rpi`, and hostname `rpi`
 2. Ensure the two storage SSDs are connected: the 64 GB homelab-data SSD and the 500 GB Immich SSD
 3. Install important sysadmin software, notably the `micro` text editor (and add `dust`, `lazygit` and `btop` at some point)
@@ -46,11 +49,12 @@ Host github.com
   IdentityFile ~/.ssh/github
 ```
 10. Clone the Docker compose files from Github: `git clone https://github.com/MMK21Hub/rpi-docker-compose.git ~/docker-compose-configs`
-
-11. Add bash aliases for Docker:
+11. Add bash aliases for Docker and apt (`micro ~/.bashrc`, or you could put them in `~/.bash_aliases`):
 ```bash
 alias dc='docker compose'
 alias up='docker compose up -d'
+alias dcp='docker compose pull && docker compose up -d'
+alias aptu='sudo apt update && sudo apt upgrade'
 ```
 12. Also, hoard Bash history lines
 ```bash
@@ -68,7 +72,7 @@ HISTFILESIZE=10000
 0 2 * * * /bin/bash /home/pi/docker-compose-configs/home-assistant/upload-latest-backup.sh
 ```
 
-### Part 2: Bringing it online
+## Part 2: Bringing it online
 
 1. `cd ~/docker-compose-configs`
 2. Bring up Caddy first becuase it has the definition for the `caddy-network` network (`cd caddy` and then `up`)
@@ -77,21 +81,54 @@ HISTFILESIZE=10000
 5. Check CPU/RAM usage with `btop`, check `df -h`
 6. Use a web browser to test that services are running as expected
 
-### Part 3: Installing scripts (optional)
+## Part 3: Installing scripts (optional)
 
 My scripts in `~/scripts` are meant to be non-essential and temporary, but temporary solutions often inevitably become permanent, and it can be useful to have a way to restore them.
 
-#### Pull scripts from GitHub
+### Pull scripts from GitHub
 
 ```bash
 cd ~
 git clone git@github.com:MMK21Hub/rpi-scripts.git scripts
 ```
 
-#### Add scripts to crontab
+### Add scripts to crontab
 
 Add the following line to the crontab (`crontab -e`):
 
 ```bash
 * * * * * /home/pi/scripts/venv/bin/python /home/pi/scripts/mc_server_mon.py
 ```
+
+## Keeping things up-to-date
+
+### Updating Debian packages
+
+You can update the OS and packages by running `aptu` (an alias that performs the standard update + upgrade incarnations).
+
+Debian doesn't require frequent updating like Arch does, but it's good to make sure the latest security patches are installed. Therefore, I don't have a set update schedule, but I perform an update whenever that pops into my mind.
+
+### Updating Docker services
+
+Docker service stacks need to be updated individually when a new version is released. (This should probably be made automatic for some services in the future.) You can do it like this:
+
+```bash
+cd ~/docker-compose-configs/grafana/
+dcp
+```
+
+The `dcp` alias pulls the latest images and then restarts the service.
+
+When updating Immich, be sure to check the [release notes](https://github.com/immich-app/immich/releases) for breaking changes.
+
+#### Use of GitHub notifications
+
+So that I know when a new version of a service I use is released, I simply watch the relevant repositories on GitHub (releases only). It's low-tech, but has worked well so far.
+
+![GitHub notifications for new updates to grafana and open web ui](github-notifications.png)
+
+I follow the following repos:
+
+* <https://github.com/grafana/grafana>
+* <https://github.com/open-webui/open-webui>
+* <https://github.com/netdata/netdata>
