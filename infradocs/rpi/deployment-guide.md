@@ -17,7 +17,7 @@ Done from memory without testing. Proper guide coming soon, maybe
 4. Add the SSDs to fstab: (apply with `sudo mount -a`)
 ```fstab
 LABEL="homelab-data-2" /mnt/data   ext4 defaults,rw,noatime,data=ordered 0 0
-LABEL="immich" /mnt/immich ext4 defaults,rw,noatime,data=ordered,nofail 0 0
+LABEL="immish" /mnt/immich ext4 defaults,rw,noatime,data=ordered,nofail 0 0
 ```
 5. Increase swapfile size (this is mainly to prevent Immich's machine learning bringing down the system) in `/etc/dphys-swapfile`
 ```bash
@@ -61,6 +61,7 @@ HISTFILESIZE=10000
 14. Set up user cron jobs (don't use `sudo`)
 ```bash
 # crontab -l
+@daily    crontab -l > $HOME/.crontab # backup crontab
 0 2 * * * /bin/bash /home/pi/docker-compose-configs/backup-file-to-pomf.sh /mnt/data/terraria/worlds/ACMO-S3.wld.bak
 0 2 * * * /bin/bash /home/pi/docker-compose-configs/home-assistant/upload-latest-backup.sh
 ```
@@ -73,3 +74,22 @@ HISTFILESIZE=10000
 3. Bring up the other services: `cloudflare-ddns`, `grafana`, `home-assistant`, `immich-app`, `librechat`, `netdata`, `ntfy`, `socks5`, `syncthing`, `terraria` (note that this list changes pretty frequently, so be sure to `ls ~/docker-compose-configs` to check if anything's been missed accidentally)
 5. Check CPU/RAM usage with `btop`, check `df -h`
 6. Use a web broswer to test that services are running as expected 
+
+### Part 3: Installing scripts (optional)
+
+My scripts in `~/scripts` are meant to be non-essential and temporary, but temporary solutions often inevitably become permanent, and it can be useful to have a way to restore them.
+
+#### Pull scripts from GitHub
+
+```bash
+cd ~
+git clone git@github.com:MMK21Hub/rpi-scripts.git scripts
+```
+
+#### Add scripts to crontab
+
+Add the following line to the crontab (`crontab -e`):
+
+```bash
+* * * * * /home/pi/scripts/venv/bin/python /home/pi/scripts/mc_server_mon.py
+```

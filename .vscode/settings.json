@@ -1,6 +1,6 @@
 {
-    "cSpell.words": [
-        "Infradocs",
-        "Slevel"
-    ]
+  "cSpell.words": ["Infradocs", "Slevel"],
+  "[markdown]": {
+    "editor.defaultFormatter": "vscode.markdown-language-features"
+  }
 }
