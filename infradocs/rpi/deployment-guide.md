@@ -21,7 +21,7 @@ LABEL="immish" /mnt/immich ext4 defaults,rw,noatime,data=ordered,nofail 0 0
 ```
 5. Increase swapfile size (this is mainly to prevent Immich's machine learning bringing down the system) in `/etc/dphys-swapfile`
 ```bash
-CONF_SWAPFILE=/mnt/immich/swapfile
+CONF_SWAPFILE=/mnt/data/swapfile
 CONF_SWAPSIZE=8192
 CONF_MAXSWAP=8192
 ```
@@ -62,7 +62,7 @@ HISTFILESIZE=10000
 ```bash
 # crontab -l
 @daily    crontab -l > $HOME/.crontab # backup crontab
-0 2 * * * /bin/bash /home/pi/docker-compose-configs/backup-file-to-pomf.sh /mnt/data/terraria/worlds/ACMO-S3.wld.bak
+0 2 * * * /bin/bash /home/pi/docker-compose-configs/backup-file-to-pomf.sh /mnt/data/terraria/worlds/ACMO-S4.wld.bak
 0 2 * * * /bin/bash /home/pi/docker-compose-configs/home-assistant/upload-latest-backup.sh
 ```
 
@@ -70,10 +70,10 @@ HISTFILESIZE=10000
 
 1. `cd ~/docker-compose-configs`
 2. Bring up Caddy first becuase it has the definition for the `caddy-network` network (`cd caddy` and then `up`)
-2. Bring up `victoria` (VictoriaMetrics) becuse quite a few things send/recieve from it
+2. Bring up `victoria` (VictoriaMetrics) because quite a few things send/receive from it
 3. Bring up the other services: `cloudflare-ddns`, `grafana`, `home-assistant`, `immich-app`, `librechat`, `netdata`, `ntfy`, `socks5`, `syncthing`, `terraria` (note that this list changes pretty frequently, so be sure to `ls ~/docker-compose-configs` to check if anything's been missed accidentally)
 5. Check CPU/RAM usage with `btop`, check `df -h`
-6. Use a web broswer to test that services are running as expected 
+6. Use a web browser to test that services are running as expected
 
 ### Part 3: Installing scripts (optional)
 
