@@ -8,6 +8,8 @@ It uses Jekyll with the [Minima](https://github.com/jekyll/minima) theme. It's d
 
 ## Development instructions
 
+<!-- First, you should install Ruby (`extra/ruby` package on Arch) and [rvm](https://rvm.io/rvm/install). -->
+
 ```bash
 # Using sudo here is really stupid,
 # but Bundler seems to insist on writing to root-owned directories
