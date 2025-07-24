@@ -5,7 +5,7 @@ tags: rpi incident
 date: 2025-07-24 16:00:00 +0100
 ---
 
-On 24 July 2025, all services hosted on the [Raspberry Pi 400](../infradocs/rpi) went offline. This was due to the Pi's microSD card (which provides the root and boot filesystems) failing and producing I/O errors for write operations.
+On 24 July 2025, all services hosted on the [Raspberry Pi 400](/infradocs/rpi) went offline. This was due to the Pi's microSD card (which provides the root and boot filesystems) failing and producing I/O errors for write operations.
 
 ## Timeline
 
