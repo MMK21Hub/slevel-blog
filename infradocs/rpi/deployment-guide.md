@@ -55,7 +55,7 @@ user.name=MMK21
 user.email=50421330+MMK21Hub@users.noreply.github.com
 core.editor=micro
 ```
-```ssh-config
+```ssh
 # cat ~/.ssh/config
 Host github.com
   HostName github.com
