@@ -4,13 +4,19 @@
     "aptu",
     "Bitwarden",
     "Clonezilla",
+    "dphys",
     "immish",
     "Infradocs",
     "iperf3",
     "lazygit",
     "librechat",
+    "noatime",
+    "nofail",
     "pomf",
-    "Slevel"
+    "Slevel",
+    "swapoff",
+    "swapon",
+    "sysstat"
   ],
   "[markdown]": {
     "editor.defaultFormatter": "vscode.markdown-language-features"

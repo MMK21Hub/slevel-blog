@@ -16,25 +16,31 @@ Also, if you're not Mish, you might struggle to follow some of the steps (especi
 ## Part 1: Installation and configuration
 
 <!-- TODO backups to mish-arch?? -->
-1. Install the latest Raspberry Pi OS onto an SD card, with SSH access (via pubkey ofc) available for a user called `rpi`, and hostname `rpi`
-2. Ensure the two storage SSDs are connected: the 64 GB homelab-data SSD and the 500 GB Immich SSD
-3. Install important sysadmin software, notably the `micro` text editor (and add `dust`, `lazygit` and `btop` at some point)
-4. Add the SSDs to fstab: (apply with `sudo mount -a`)
-```fstab
+1. Install the latest Raspberry Pi OS Lite (64-bit) onto an SD card, with the following OS customization settings:
+   - Hostname: `rpi`
+   - Username: `rpi` and a password of your choice
+   - Do not configure wireless LAN
+   - Time zone "Europe/London" and keyboard layout "gb"
+   - Enable SSH with public-key authentication
+2. Ensure the `homelab-data-2` SSD is connected to the Pi (it's a Crucial BX500 1TB SSD).
+   - Use a USB SATA enclosure (such as the one with date code `20231025`) because the simple USB-to-SATA adapters aren't reliable.
+3. Install important sysadmin software, notably the `micro` text editor (and add `dust`, `lazygit`, `sysstat` and `btop` at some point)
+4. Add the SSD to `/etc/fstab`:
+```bash
 LABEL="homelab-data-2" /mnt/data   ext4 defaults,rw,noatime,data=ordered 0 0
-LABEL="immish" /mnt/immich ext4 defaults,rw,noatime,data=ordered,nofail 0 0
 ```
-5. Increase swapfile size (this is mainly to prevent Immich's machine learning bringing down the system) in `/etc/dphys-swapfile`
+1. Apply the fstab changes with `sudo mount -a`
+2. Increase swapfile size (this is mainly to prevent Immich's machine learning bringing down the system) in `/etc/dphys-swapfile`
 ```bash
 CONF_SWAPFILE=/mnt/data/swapfile
 CONF_SWAPSIZE=8192
 CONF_MAXSWAP=8192
 ```
-6. Apply the swapfile changes: `sudo dphys-swapfile {swapoff,setup,swapon}`
-7. Install and set up PiVPN - <https://www.pivpn.io/>
-7. Install `iperf3`
-8. Install Docker: <https://docs.docker.com/engine/install/debian/#install-using-the-repository>
-9. Install Git, configure it, and set up authentication via SSH
+1. Apply the swapfile changes: `sudo dphys-swapfile {swapoff,setup,swapon}`
+2. Install and set up PiVPN: <https://www.pivpn.io/>
+3. Install `iperf3` (set it up to start on boot in server mode)
+4. Install Docker: <https://docs.docker.com/engine/install/debian/#install-using-the-repository>
+5. Install Git, configure it, and set up authentication via SSH
 ```ini
 # git config -l
 user.name=MMK21
@@ -48,23 +54,23 @@ Host github.com
   User git
   IdentityFile ~/.ssh/github
 ```
-10. Clone the Docker compose files from Github: `git clone https://github.com/MMK21Hub/rpi-docker-compose.git ~/docker-compose-configs`
-11. Add bash aliases for Docker and apt (`micro ~/.bashrc`, or you could put them in `~/.bash_aliases`):
+1. Clone the Docker compose files from Github: `git clone https://github.com/MMK21Hub/rpi-docker-compose.git ~/docker-compose-configs`
+2. Add bash aliases for Docker and apt (`micro ~/.bashrc`, or you could put them in `~/.bash_aliases`):
 ```bash
 alias dc='docker compose'
 alias up='docker compose up -d'
 alias dcp='docker compose pull && docker compose up -d'
 alias aptu='sudo apt update && sudo apt upgrade'
 ```
-12. Also, hoard Bash history lines
+1. Also, hoard Bash history lines
 ```bash
 HISTSIZE=10000
 HISTFILESIZE=10000
 ```
-13. Install dependencies for bash scripts: `jq` and `age` (for encryption)
-15. Get the Home Assistant Backup private key from Bitwarden and save it to `~/secrets/backup-passwords/home-assistant-db`
-16. `chmod 400 ~/secrets/backup-passwords/home-assistant-db`
-14. Set up user cron jobs (don't use `sudo`)
+1. Install dependencies for bash scripts: `jq` and `age` (for encryption)
+2. Get the Home Assistant Backup private key from Bitwarden and save it to `~/secrets/backup-passwords/home-assistant-db`
+3. `chmod 400 ~/secrets/backup-passwords/home-assistant-db`
+4. Set up user cron jobs (run `crontab -e`) (do *not* use `sudo`)
 ```bash
 # crontab -l
 @daily    crontab -l > $HOME/.crontab # backup crontab
@@ -75,10 +81,10 @@ HISTFILESIZE=10000
 ## Part 2: Bringing it online
 
 1. `cd ~/docker-compose-configs`
-2. Bring up Caddy first becuase it has the definition for the `caddy-network` network (`cd caddy` and then `up`)
+2. Bring up Caddy first becuase it has the definition for the `caddy-network` network (i.e. `cd caddy` and then `up`)
 2. Bring up `victoria` (VictoriaMetrics) because quite a few things send/receive from it
-3. Bring up the other services: `cloudflare-ddns`, `grafana`, `home-assistant`, `immich-app`, `librechat`, `netdata`, `ntfy`, `socks5`, `syncthing`, `terraria` (note that this list changes pretty frequently, so be sure to `ls ~/docker-compose-configs` to check if anything's been missed accidentally)
-5. Check CPU/RAM usage with `btop`, check `df -h`
+3. Bring up the other services: `cloudflare-ddns`, `grafana`, `home-assistant`, `immich-app`, `netdata`, `open-webui`, `socks5`, `syncthing`, `terraria` (note that this list changes pretty frequently, so be sure to `ls ~/docker-compose-configs` to check if anything's been missed accidentally)
+5. Check CPU/RAM usage with `btop`; check `df -h`
 6. Use a web browser to test that services are running as expected
 
 ## Part 3: Installing scripts (optional)
