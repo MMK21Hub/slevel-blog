@@ -43,3 +43,24 @@ I used GNOME Disks to create a disk image from the failed SD card (under the ass
 2. 14:29 – NTP system time sync completes, giving the first correctly-timestamped journal entry after the incident
 3. 14:31:30 – Metrics become available in Netdata, indicating that the Pi has become operational again
 4. 14:33 – I check Immich and Home Assistant using a browser, and they are both operational
+
+## Conclusion
+
+Two main factors allowed me to address the incident relatively quickly:
+
+- I attempted to use Immich on the same day that the failure happened, so I noticed the problem somewhat quickly.
+- The SD card was still readable and there hadn't been any data corruption.
+
+Had the first fact not been true, the Pi may have remained offline for a couple days or more, because I don't have any notifications set up for when the Pi goes down. Had the second fact not been true, I would have had to manually [re-deploy the OS and services to my Pi](/infradocs/rpi/deployment-guide.md), a process which may have taken over one day and hasn't been fully tested.
+
+## Lessons learnt
+
+- Netdata is great
+- SD cards are unreliable (but I already knew this)
+- GNOME Disks is great
+- Clonezilla doesn't always work (I tried to clone the SD card using it, but it failed to copy the root partition)
+- I should have automatic notifications set up for when there's a catastrophic problem like this (and probably for slightly less major problems too)
+
+## Steps taken after the incident
+
+1. July 24 2025 – Updated and extended the [Raspberry Pi deployment guide](/infradocs/rpi/deployment-guide.md), to provide more guidance in case I do need to re-deploy the Pi in the future.
