@@ -11,7 +11,9 @@ A guide to deploy my home server stack on a Raspberry Pi.
 
 This guide was made from memory and hadn't (yet) been fully tested.
 
-Also, if you're not Mish, you might struggle to follow some of the steps (especially regarding security configuration) because this is intended as a guide for future me. The `rpi-docker-compose` repository is unfortunately not public. However, if you want to take inspiration from my setup, please do, and message me (Slack, email, Discord) because I'd be more than happy to give you some tips.
+Also, if you're not Mish, you might struggle to follow some of the steps (especially regarding security configuration) because this is intended as a guide for future me. The `rpi-docker-compose` repository is unfortunately not public. 
+
+With that said, if you want to take inspiration from my setup, please do, and message me (Slack, email, Discord) because I'd be more than happy to give you some tips.
 
 ## Part 1: Installation and configuration
 
