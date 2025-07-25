@@ -37,17 +37,23 @@ CONF_SWAPSIZE=8192
 CONF_MAXSWAP=8192
 ```
 1. Apply the swapfile changes: `sudo dphys-swapfile {swapoff,setup,swapon}`
-2. Install and set up PiVPN: <https://www.pivpn.io/>
+2. Install and set up PiVPN: <https://www.pivpn.io/> (and add a client profile for my mobile phone)
 3. Install `iperf3` (set it up to start on boot in server mode)
 4. Install Docker: <https://docs.docker.com/engine/install/debian/#install-using-the-repository>
-5. Install Git, configure it, and set up authentication via SSH
+5. Customize the Docker config to store data on the data SSD. Edit `etc/docker/daemon.json` and give it the following content:
+```json
+{
+    "data-root": "/mnt/data/docker-data"
+}
+```
+7. Install Git, configure it, and set up authentication via SSH
 ```ini
 # git config -l
 user.name=MMK21
 user.email=50421330+MMK21Hub@users.noreply.github.com
 core.editor=micro
 ```
-```ssh
+```ssh-config
 # cat ~/.ssh/config
 Host github.com
   HostName github.com
@@ -87,7 +93,20 @@ HISTFILESIZE=10000
 5. Check CPU/RAM usage with `btop`; check `df -h`
 6. Use a web browser to test that services are running as expected
 
-## Part 3: Installing scripts (optional)
+## Part 3: Updating NTP servers
+
+This is a lower-priority task than the others, but I've previously had issues with the default Debian NTP servers. To fix this, edit `/etc/systemd/timesyncd.conf` change the NTP servers line as follows:
+```ini
+NTP=time.google.com time2.google.com time3.google.com
+```
+
+Then reload everything:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart systemd-timesyncd
+```
+
+## Part 4: Installing scripts (optional)
 
 My scripts in `~/scripts` are meant to be non-essential and temporary, but temporary solutions often inevitably become permanent, and it can be useful to have a way to restore them.
 
