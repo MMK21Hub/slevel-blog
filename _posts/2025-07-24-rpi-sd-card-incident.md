@@ -3,7 +3,7 @@ title: "RPi incident report: SD card failure on 24 July 2025"
 layout: post
 tags: rpi incident
 date: 2025-07-24 16:00:00 +0100
-updated: 2025-07-24 23:23:00 +0100
+updated: 2025-07-30 11:30:00 +0100
 ---
 
 On 24 July 2025, all services hosted on the [Raspberry Pi 400](/infradocs/rpi) went offline. This was due to the Pi's microSD card (which provides the root and boot filesystems) failing and producing I/O errors for write operations.
@@ -19,7 +19,7 @@ All events happened on **24 July 2025**. Times are quoted in the local timezone,
    - Normally, CPU usage spikes to between 80%–100% while these backups are being created, but only for about 5 minutes or less.
 2. 02:00:00 – Disk utilisation rises to around 48%, consistent with normal disk usage during backups.
 3. 02:15:12 – Disk backlog for the SD card peaks at 7 min 26 sec.
-4. 02:44 (01:44 UTC) – [Monitoring from UptimeRobot](https://stats.uptimerobot.com/Pr5KEg7eN9/796661538) detected that the Pi had stopped responding to HTTP requests.
+4. 02:44 (01:44 UTC) – [Monitoring from UptimeRobot](https://stats.uptimerobot.com/Pr5KEg7eN9/796661538) detected that the Pi had stopped responding to HTTP requests. ([Internal incident link](https://dashboard.uptimerobot.com/incidents/817160927))
    <!-- 5. 03:36:07 – Disk backlog rises from around 2.5 seconds to around 5 seconds. -->
 5. 03:37:39 – Disk utilisation rises to around 100%.
 6. Around 03:40 – Netdata metrics become unavailable
@@ -63,4 +63,5 @@ Had the first fact not been true, the Pi may have remained offline for a couple 
 
 ## Steps taken after the incident
 
-1. July 24 2025 – Updated and extended the [Raspberry Pi deployment guide](/infradocs/rpi/deployment-guide.md), to provide more guidance in case I do need to re-deploy the Pi in the future.
+1. 24 July 2025 – Updated and extended the [Raspberry Pi deployment guide](/infradocs/rpi/deployment-guide.md), to provide more guidance in case I do need to re-deploy the Pi in the future.
+2. 30 July 2025 – Set up email alerts on UptimeRobot for "RPi internet access" and ping.slevel.xyz
