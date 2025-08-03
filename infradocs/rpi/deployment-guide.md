@@ -159,3 +159,4 @@ I follow the following repos:
 * <https://github.com/grafana/grafana>
 * <https://github.com/open-webui/open-webui>
 * <https://github.com/netdata/netdata>
+* <https://github.com/VictoriaMetrics/VictoriaMetrics>
