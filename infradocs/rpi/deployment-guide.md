@@ -85,6 +85,10 @@ HISTFILESIZE=10000
 0 2 * * * /bin/bash /home/pi/docker-compose-configs/backup-file-to-pomf.sh /mnt/data/terraria/worlds/ACMO-S4.wld.bak
 0 2 * * * /bin/bash /home/pi/docker-compose-configs/home-assistant/upload-latest-backup.sh
 ```
+I used to use git-sync to provide version control and "backup" of the Home Assistant config, but dealing with the really large files in the config directory became too much of a bother for the benefit. Here's the cron line, for posterity:
+```bash
+40 * * * * cd /mnt/data/home-assistant/data && /usr/local/bin/git-sync 2>&1 | logger -t git-sync-root
+```
 
 ## Part 2: Bringing it online
 
