@@ -11,13 +11,14 @@ A guide to deploy my home server stack on a Raspberry Pi.
 
 This guide was made from memory and hadn't (yet) been fully tested.
 
-Also, if you're not Mish, you might struggle to follow some of the steps (especially regarding security configuration) because this is intended as a guide for future me. The `rpi-docker-compose` repository is unfortunately not public. 
+Also, if you're not Mish, you might struggle to follow some of the steps (especially regarding security configuration) because this is intended as a guide for future me. The `rpi-docker-compose` repository is unfortunately not public.
 
 With that said, if you want to take inspiration from my setup, please do, and message me (Slack, email, Discord) because I'd be more than happy to give you some tips.
 
 ## Part 1: Installation and configuration
 
 <!-- TODO backups to mish-arch?? -->
+
 1. Install the latest Raspberry Pi OS Lite (64-bit) onto an SD card, with the following OS customization settings:
    - Hostname: `rpi`
    - Username: `rpi` and a password of your choice
@@ -28,85 +29,87 @@ With that said, if you want to take inspiration from my setup, please do, and me
    - Use a USB SATA enclosure (such as the one with date code `20231025`) because the simple USB-to-SATA adapters aren't reliable.
 3. Install important sysadmin software, notably the `micro` text editor (and add `dust`, `lazygit`, `sysstat` and `btop` at some point)
 4. Add the SSD to `/etc/fstab`:
-```bash
-LABEL="homelab-data-2" /mnt/data   ext4 defaults,rw,noatime,data=ordered 0 0
-```
-1. Apply the fstab changes with `sudo mount -a`
-2. Increase swapfile size (this is mainly to prevent Immich's machine learning bringing down the system) in `/etc/dphys-swapfile`
-```bash
-CONF_SWAPFILE=/mnt/data/swapfile
-CONF_SWAPSIZE=8192
-CONF_MAXSWAP=8192
-```
-1. Apply the swapfile changes: `sudo dphys-swapfile {swapoff,setup,swapon}`
-2. Install and set up PiVPN: <https://www.pivpn.io/> (and add a client profile for my mobile phone)
-3. Install `iperf3` (set it up to start on boot in server mode)
-4. Install Docker: <https://docs.docker.com/engine/install/debian/#install-using-the-repository>
-5. Customize the Docker config to store data on the data SSD. Edit `etc/docker/daemon.json` and give it the following content:
-```json
-{
-    "data-root": "/mnt/data/docker-data"
-}
-```
-7. Install Git, configure it, and set up authentication via SSH
-```ini
-# git config -l
-user.name=MMK21
-user.email=50421330+MMK21Hub@users.noreply.github.com
-core.editor=micro
-```
-```ssh
-# cat ~/.ssh/config
-Host github.com
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/github
-```
-1. Clone the Docker compose files from Github: `git clone https://github.com/MMK21Hub/rpi-docker-compose.git ~/docker-compose-configs`
-2. Add bash aliases for Docker and apt (`micro ~/.bashrc`, or you could put them in `~/.bash_aliases`):
-```bash
-alias dc='docker compose'
-alias up='docker compose up -d'
-alias dcp='docker compose pull && docker compose up -d'
-alias aptu='sudo apt update && sudo apt upgrade'
-```
-1. Also, hoard Bash history lines
-```bash
-HISTSIZE=10000
-HISTFILESIZE=10000
-```
-1. Install dependencies for bash scripts: `jq` and `age` (for encryption)
-2. Get the Home Assistant Backup private key from Bitwarden and save it to `~/secrets/backup-passwords/home-assistant-db`
-3. `chmod 400 ~/secrets/backup-passwords/home-assistant-db`
-4. Set up user cron jobs (run `crontab -e`) (do *not* use `sudo`)
-```bash
-# crontab -l
-@daily    crontab -l > $HOME/.crontab # backup crontab
-0 2 * * * /bin/bash /home/pi/docker-compose-configs/backup-file-to-pomf.sh /mnt/data/terraria/worlds/ACMO-S4.wld.bak
-0 2 * * * /bin/bash /home/pi/docker-compose-configs/home-assistant/upload-latest-backup.sh
-```
-I used to use git-sync to provide version control and "backup" of the Home Assistant config, but dealing with the really large files in the config directory became too much of a bother for the benefit. Here's the cron line, for posterity:
-```bash
-40 * * * * cd /mnt/data/home-assistant/data && /usr/local/bin/git-sync 2>&1 | logger -t git-sync-root
-```
+   ```bash
+   LABEL="homelab-data-2" /mnt/data   ext4 defaults,rw,noatime,data=ordered 0 0
+   ```
+5. Apply the fstab changes with `sudo mount -a`
+6. Increase swapfile size (this is mainly to prevent Immich's machine learning bringing down the system) in `/etc/dphys-swapfile`
+   ```bash
+   CONF_SWAPFILE=/mnt/data/swapfile
+   CONF_SWAPSIZE=8192
+   CONF_MAXSWAP=8192
+   ```
+7. Apply the swapfile changes: `sudo dphys-swapfile {swapoff,setup,swapon}`
+8. Install and set up PiVPN: <https://www.pivpn.io/> (and add a client profile for my mobile phone)
+9. Install `iperf3` (set it up to start on boot in server mode)
+10. Install Docker: <https://docs.docker.com/engine/install/debian/#install-using-the-repository>
+11. Customize the Docker config to store data on the data SSD. Edit `etc/docker/daemon.json` and give it the following content:
+    ```json
+    {
+      "data-root": "/mnt/data/docker-data"
+    }
+    ```
+12. Install Git, configure it, and set up authentication via SSH
+    ```ini
+    # git config -l
+    user.name=MMK21
+    user.email=50421330+MMK21Hub@users.noreply.github.com
+    core.editor=micro
+    ```
+    ```ssh
+    # cat ~/.ssh/config
+    Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github
+    ```
+13. Clone the Docker compose files from Github: `git clone https://github.com/MMK21Hub/rpi-docker-compose.git ~/docker-compose-configs`
+14. Add bash aliases for Docker and apt (`micro ~/.bashrc`, or you could put them in `~/.bash_aliases`):
+    ```bash
+    alias dc='docker compose'
+    alias up='docker compose up -d'
+    alias dcp='docker compose pull && docker compose up -d'
+    alias aptu='sudo apt update && sudo apt upgrade'
+    ```
+15. Also, hoard Bash history lines
+    ```bash
+    HISTSIZE=10000
+    HISTFILESIZE=10000
+    ```
+16. Install dependencies for bash scripts: `jq` and `age` (for encryption)
+17. Get the Home Assistant Backup private key from Bitwarden and save it to `~/secrets/backup-passwords/home-assistant-db`
+18. `chmod 400 ~/secrets/backup-passwords/home-assistant-db`
+19. Set up user cron jobs (run `crontab -e`) (do _not_ use `sudo`)
+    ```bash
+    # crontab -l
+    @daily    crontab -l > $HOME/.crontab # backup crontab
+    0 2 * * * /bin/bash /home/pi/docker-compose-configs/backup-file-to-pomf.sh /mnt/data/terraria/worlds/ACMO-S4.wld.bak
+    0 2 * * * /bin/bash /home/pi/docker-compose-configs/home-assistant/upload-latest-backup.sh
+    ```
+    I used to use git-sync to provide version control and "backup" of the Home Assistant config, but dealing with the really large files in the config directory became too much of a bother for the benefit. Here's the cron line, for posterity:
+    ```bash
+    40 * * * * cd /mnt/data/home-assistant/data && /usr/local/bin/git-sync 2>&1 | logger -t git-sync-root
+    ```
 
 ## Part 2: Bringing it online
 
 1. `cd ~/docker-compose-configs`
 2. Bring up Caddy first becuase it has the definition for the `caddy-network` network (i.e. `cd caddy` and then `up`)
-2. Bring up `victoria` (VictoriaMetrics) because quite a few things send/receive from it
-3. Bring up the other services: `cloudflare-ddns`, `grafana`, `home-assistant`, `immich-app`, `netdata`, `open-webui`, `socks5`, `syncthing`, `terraria` (note that this list changes pretty frequently, so be sure to `ls ~/docker-compose-configs` to check if anything's been missed accidentally)
+3. Bring up `victoria` (VictoriaMetrics) because quite a few things send/receive from it
+4. Bring up the other services: `cloudflare-ddns`, `grafana`, `home-assistant`, `immich-app`, `netdata`, `open-webui`, `socks5`, `syncthing`, `terraria` (note that this list changes pretty frequently, so be sure to `ls ~/docker-compose-configs` to check if anything's been missed accidentally)
 5. Check CPU/RAM usage with `btop`; check `df -h`
 6. Use a web browser to test that services are running as expected
 
 ## Part 3: Updating NTP servers
 
 This is a lower-priority task than the others, but I've previously had issues with the default Debian NTP servers. To fix this, edit `/etc/systemd/timesyncd.conf` change the NTP servers line as follows:
+
 ```ini
 NTP=time.google.com time2.google.com time3.google.com
 ```
 
 Then reload everything:
+
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl restart systemd-timesyncd
@@ -160,7 +163,7 @@ So that I know when a new version of a service I use is released, I simply watch
 
 I follow the following repos:
 
-* <https://github.com/grafana/grafana>
-* <https://github.com/open-webui/open-webui>
-* <https://github.com/netdata/netdata>
-* <https://github.com/VictoriaMetrics/VictoriaMetrics>
+- <https://github.com/grafana/grafana>
+- <https://github.com/open-webui/open-webui>
+- <https://github.com/netdata/netdata>
+- <https://github.com/VictoriaMetrics/VictoriaMetrics>
