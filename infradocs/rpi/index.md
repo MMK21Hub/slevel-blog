@@ -9,6 +9,14 @@ My **Raspberry Pi 400** acts as a central home server, hosting various internal 
 
 - [Deployment guide](./deployment-guide) (steps for deploying all the software onto a fresh Raspberry Pi)
 
+## Networking
+
+The Pi 400 has a static IPv4 address of `192.168.1.20` and hostname `rpi`.
+
+## Software
+
+The Pi 400 runs Debian, specifically Debian GNU/Linux 12 (bookworm).
+
 ## Services
 
 ### Private
