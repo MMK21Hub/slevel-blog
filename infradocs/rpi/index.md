@@ -32,10 +32,10 @@ Some of my personal coding projects are self-hosted here.
 
 ### Invite-only
 
-- **Immish** - [Immich](https://immich.app/) + Mish ([photos.slevel.xyz](https://photos.slevel.xyz/))
+- **Immish** - [Immich](https://immich.app/) + Mish ([photos.slevel.xyz](https://photos.slevel.xyz/) or `:2024`)
 - **Grafana** - Observability, or something ([grafana.slevel.xyz](https://grafana.slevel.xyz/))
 - **Terraria server** - Terraria server for my friends. Uses the [ryshe/terraria](https://hub.docker.com/r/ryshe/terraria/) Docker image ([terraria.slevel.xyz](https://terraria.slevel.xyz/))
-- **Home Assistant** - Feature-packed platform for home automation shenanigans ([home.slevel.xyz](https://home.slevel.xyz/))
+- **Home Assistant** - Feature-packed platform for home automation shenanigans ([home.slevel.xyz](https://home.slevel.xyz/) or `:8123`)
 - **Open WebUI** - Chat with LLMs ([chat.slevel.xyz](https://chat.slevel.xyz/))
 - **Tinyproxy** - Evade network restrictions. Not currently in use
 - **Vikunja** - My to-do list ([todo.slevel.xyz](https://todo.slevel.xyz/))
