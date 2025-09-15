@@ -15,10 +15,14 @@
     "nofail",
     "pomf",
     "Powerline",
+    "Promtail",
     "Slevel",
     "swapoff",
     "swapon",
-    "sysstat"
+    "Syncthing",
+    "sysstat",
+    "Tinyproxy",
+    "Vikunja"
   ],
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
