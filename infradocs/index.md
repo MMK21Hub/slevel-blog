@@ -6,4 +6,5 @@ layout: page
 
 ## Devices
 
-- [Raspberry Pi](./rpi)
+- [Raspberry Pi 400](./rpi)
+- [Sunny Pi](./sunny-pi)
