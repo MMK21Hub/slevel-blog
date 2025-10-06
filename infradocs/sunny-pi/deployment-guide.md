@@ -100,3 +100,13 @@ sudo tailscale set --advertise-routes=192.0.1.0/24
 ```
 
 Then, approve the subnet route in the Tailscale dashboard.
+
+## Set up Coolify
+
+Run the [self-hosted Coolify installation script](https://coolify.io/docs/get-started/installation#self-hosted-installation).
+
+### Restore Coolify data from a backup
+
+Replace the contents of `/data/coolify/source/.env` with the .env content stored in Bitwarden.
+
+Then you'll presumably want to restore the Coolify database from a backup. You're on your own there.
