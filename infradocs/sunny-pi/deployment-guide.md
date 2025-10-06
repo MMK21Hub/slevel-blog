@@ -105,8 +105,16 @@ Then, approve the subnet route in the Tailscale dashboard.
 
 Run the [self-hosted Coolify installation script](https://coolify.io/docs/get-started/installation#self-hosted-installation).
 
+Create the admin account as soon as possible. You can then skip the onboarding.
+
 ### Restore Coolify data from a backup
 
 Replace the contents of `/data/coolify/source/.env` with the .env content stored in Bitwarden.
 
 Then you'll presumably want to restore the Coolify database from a backup. You're on your own there.
+
+## Set up Cloudflare Tunnels
+
+Create a Cloudflare Zero Trust Tunnel, and follow the steps in the Cloudflare dashboard to install `cloudflared` on the Pi (expect `apt-get install cloudflared` at some point) and set the connector service to run at startup.
+
+`coolify-admin.slevel.xyz` should point to `http://localhost:8000` (the Coolify web UI).
