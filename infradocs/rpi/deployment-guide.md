@@ -80,13 +80,20 @@ With that said, if you want to take inspiration from my setup, please do, and me
 17. Get the Home Assistant Backup private key from Bitwarden and save it to `~/secrets/backup-passwords/home-assistant-db`
 18. `chmod 400 ~/secrets/backup-passwords/home-assistant-db`
 19. Set up user cron jobs (run `crontab -e`) (do _not_ use `sudo`)
+
     ```bash
     # crontab -l
     @daily    crontab -l > $HOME/.crontab # backup crontab
     0 2 * * * /bin/bash /home/pi/docker-compose-configs/backup-file-to-pomf.sh /mnt/data/terraria/worlds/ACMO-S4.wld.bak
     0 2 * * * /bin/bash /home/pi/docker-compose-configs/home-assistant/upload-latest-backup.sh
+    * * * * * /home/pi/scripts/venv/bin/python /home/pi/scripts/mc_server_mon.py
+
+    # Free up space used by Docker
+    50 0 * * 1 /usr/bin/docker system prune -a
     ```
+
     I used to use git-sync to provide version control and "backup" of the Home Assistant config, but dealing with the really large files in the config directory became too much of a bother for the benefit. Here's the cron line, for posterity:
+
     ```bash
     40 * * * * cd /mnt/data/home-assistant/data && /usr/local/bin/git-sync 2>&1 | logger -t git-sync-root
     ```
