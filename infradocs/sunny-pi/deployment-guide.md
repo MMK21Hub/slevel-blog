@@ -115,6 +115,8 @@ Then you'll presumably want to restore the Coolify database from a backup. You'r
 
 ## Set up Cloudflare Tunnels
 
+The Coolify UI is primarily accessed through the Caddy reverse proxy on [RPi](../rpi) (`coolify-ui.slevel.xyz`), but a Cloudflare Tunnel is also set up to provide access if Caddy breaks or is unreachable. Decide if you want to set up Cloudflare Tunnels, and if you do, follow the steps below.
+
 Create a Cloudflare Zero Trust Tunnel, and follow the steps in the Cloudflare dashboard to install `cloudflared` on the Pi (expect `apt-get install cloudflared` at some point) and set the connector service to run at startup.
 
 `coolify-admin.slevel.xyz` should point to `http://localhost:8000` (the Coolify web UI).
