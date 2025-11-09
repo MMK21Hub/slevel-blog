@@ -23,6 +23,8 @@ The Pi 5 has a dynamic private IPv4 address. It has no globally-routable IPv6 ad
 
 It is connected to the network via a 100 Mbps switch (which has an upstream connection to [Hallnet wired](https://www.lboro.ac.uk/services/it/getting-online/hallnet/)). I plan to upgrade the switch to a faster one.
 
+Network speed between my PC and the Pi 5 is 94.4 Mbps (tested with `iperf3`).
+
 ## Software
 
 The Pi 5 runs **Ubuntu Server 25.10**.
