@@ -5,6 +5,10 @@ layout: page
 
 **Sunny Pi** is a Raspberry Pi 4 (Model B, rev 1.5) (2 GB RAM) that serves as a backup for some of the most important services provided by the [Pi 400](/infradocs/rpi). Its hostname is `sunny`.
 
+## Pages
+
+- [Deployment guide](./deployment-guide) (steps for deploying all the software onto a fresh Raspberry Pi)
+
 ## Hardware
 
 The device is a **Raspberry Pi 4 Model B** (rev 1.5) with 2 GB RAM.
