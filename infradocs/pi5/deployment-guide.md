@@ -12,7 +12,7 @@ Of course, if you are deploying this setup outside of university accommodation, 
 ## OS Installation
 
 1. Flash the latest version of Ubuntu Server onto a microSD card using Raspberry Pi Imager. Add the following customization options:
-   - Hostname: `rp5` (or another hostname)
+   - Hostname: `pi5` (or another hostname)
    - Username: `mish` (or another username) and a password of your choice
    - Set time zone and keyboard layout
    - Enable SSH with public-key authentication only

@@ -19,7 +19,7 @@ Its only storage device is a 1 TB SATA SSD connected via a USB to SATA adapter.
 
 ## Networking
 
-The Pi 5 has a dynamic private IPv4 address. It has no globally-routable IPv6 address due to university firewalls. Its hostname is `rp5`.
+The Pi 5 has a dynamic private IPv4 address. It has no globally-routable IPv6 address due to university firewalls. Its hostname is `pi5`.
 
 It is connected to the network via a 100 Mbps switch (which has an upstream connection to [Hallnet wired](https://www.lboro.ac.uk/services/it/getting-online/hallnet/)). I plan to upgrade the switch to a faster one.
 
