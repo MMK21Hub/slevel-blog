@@ -35,7 +35,7 @@ sudo reboot
 ## Install useful packages
 
 ```bash
-sudo apt install micro btop fastfetch
+sudo apt install micro btop fastfetch lazygit
 ```
 
 ### Install nice-to-have packages
