@@ -175,3 +175,14 @@ I follow the following repos:
 - <https://github.com/netdata/netdata>
 - <https://github.com/VictoriaMetrics/VictoriaMetrics>
 - <https://github.com/caddyserver/caddy>
+
+## Other tasks
+
+### Off-site Immich backups
+
+The Immich library is periodically backed up to the `vigrin-backups` HDD. This is currently a manual process.
+
+1. Plug the HDD in to my PC (e.g. using a USB SATA enclosoure)
+2. Ensure it's mounted to my PC
+3. From the Pi, run `restic -r sftp:mish-arch-restic:/mnt/virgin-backups/restic/immich-media/ --verbose backup /mnt/immich/immich-library/`
+4. Once it's done, unmount the HDD to safely remove it, and put it away
