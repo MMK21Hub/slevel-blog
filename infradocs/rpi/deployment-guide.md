@@ -76,10 +76,14 @@ With that said, if you want to take inspiration from my setup, please do, and me
     HISTSIZE=10000
     HISTFILESIZE=10000
     ```
-16. Install dependencies for bash scripts: `jq` and `age` (for encryption)
-17. Get the Home Assistant Backup private key from Bitwarden and save it to `~/secrets/backup-passwords/home-assistant-db`
-18. `chmod 400 ~/secrets/backup-passwords/home-assistant-db`
-19. Set up user cron jobs (run `crontab -e`) (do _not_ use `sudo`)
+15. Edit `~/.inputrc` to provide a nicer auto-complete experience for symlinked folders:
+    ```bash
+    set mark-symlinked-directories on
+    ```
+17. Install dependencies for bash scripts: `jq` and `age` (for encryption)
+18. Get the Home Assistant Backup private key from Bitwarden and save it to `~/secrets/backup-passwords/home-assistant-db`
+19. `chmod 400 ~/secrets/backup-passwords/home-assistant-db`
+20. Set up user cron jobs (run `crontab -e`) (do _not_ use `sudo`)
 
     ```bash
     # crontab -l
