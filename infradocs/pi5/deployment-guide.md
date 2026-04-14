@@ -96,3 +96,22 @@ Check that the host has appeared on the [Tailscale dashboard](https://login.tail
    ```bash
    sudo tailscale up --advertise-exit-node
    ``` -->
+
+## Install UniFi OS Server
+
+Follow the Linux instructions at [Self-Hosting UniFi - help.ui.com](https://help.ui.com/hc/en-us/articles/34210126298775-Self-Hosting-UniFi)
+
+## Set up Docker Compose services
+
+Git clone the [RPi 5 Docker config repo](https://github.com/MMK21Hub/pi5-docker)! (with valid SSH auth if you want to push changes too.) Then bring everything `up` in probably whatever order you like.
+
+### Docker Compose secrets
+
+Some services use Docker secrets for secrets. Some of them can just be generated, e.g.
+
+- `openssl rand -base64 32 > librespeed/password.secret`
+
+Others may be optional, or perhaps API keys that you will need to source.
+
+Secrets are currently not centrally documented, but I try to document them with
+comments in the Compose files.
