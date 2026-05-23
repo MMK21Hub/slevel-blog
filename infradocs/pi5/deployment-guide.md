@@ -48,6 +48,14 @@ Allow `iperf3` to start as a daemon because why not.
 
 You can also perform a bandwidth test using `iperf3 -c`.
 
+## Fix coloured prompt with Kitty
+
+I use Kitty as my terminal, and by default Ubuntu Server doesn't want to give a coloured prompt to Kitty. To fix this, uncomment the following line in `~/.bashrc`:
+
+```bash
+force_color_prompt=yes
+```
+
 ## Set up Tailscale
 
 ### Install Tailscale
