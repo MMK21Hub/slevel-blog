@@ -48,12 +48,26 @@ Allow `iperf3` to start as a daemon because why not.
 
 You can also perform a bandwidth test using `iperf3 -c`.
 
-## Fix coloured prompt with Kitty
+## Shell configuration
+
+### Fix coloured prompt with Kitty
 
 I use Kitty as my terminal, and by default Ubuntu Server doesn't want to give a coloured prompt to Kitty. To fix this, uncomment the following line in `~/.bashrc`:
 
 ```bash
 force_color_prompt=yes
+```
+
+### Set up Bash aliases for Docker Compose
+
+Create `~/.bash_aliases`:
+
+```bash
+alias dc='sudo docker compose'
+alias up='sudo docker compose up -d'
+alias upl='sudo docker compose up -d && sudo docker compose logs --follow'
+alias dcp='sudo docker compose pull && sudo docker compose up -d'
+alias aptu='sudo apt update && sudo apt upgrade'
 ```
 
 ## Set up Tailscale
@@ -111,7 +125,31 @@ Follow the Linux instructions at [Self-Hosting UniFi - help.ui.com](https://help
 
 ## Set up Docker Compose services
 
-Git clone the [RPi 5 Docker config repo](https://github.com/MMK21Hub/pi5-docker)! (with valid SSH auth if you want to push changes too.) Then bring everything `up` in probably whatever order you like.
+### Install Docker
+
+See <https://docs.docker.com/engine/install/ubuntu/>.
+
+### Set up a SSH key for Git clones (optional)
+
+Required if you want to push Docker Compose config changes back GitHub.
+
+```bash
+ssh-keygen -t ed25519 -C "mish@tau"
+```
+
+Then add the public key to your GitHub account.
+
+You can optionally give it a custom file name (`-f`), but then you'll need to add an entry for `github.com` to your `~/.ssh/config`.
+
+### Pull Docker Compose configs
+
+Git clone the [RPi 5 Docker config repo](https://github.com/MMK21Hub/pi5-docker)!
+
+```bash
+git clone -v git@github.com:MMK21Hub/pi5-docker.git docker
+```
+
+Then bring everything `up` in probably whatever order you like. You can use the `upl` alias to bring the service up and watch its logs once it starts.
 
 ### Docker Compose secrets
 
