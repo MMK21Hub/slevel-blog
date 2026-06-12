@@ -123,6 +123,18 @@ Check that the host has appeared on the [Tailscale dashboard](https://login.tail
 
 Follow the Linux instructions at [Self-Hosting UniFi - help.ui.com](https://help.ui.com/hc/en-us/articles/34210126298775-Self-Hosting-UniFi)
 
+## Setting up NFS mounts (`fstab`)
+
+First, install the `nfs-common` package.
+
+Then, add to `/etc/fstab`:
+
+```bash
+mish-arch.slevel.xyz:/srv/nfs/music /mnt/music nfs defaults,_netdev,x-systemd.automount 0 0
+```
+
+Note that this accesses `mish-arch` via Tailscale.
+
 ## Set up Docker Compose services
 
 ### Install Docker
